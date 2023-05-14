@@ -18,6 +18,10 @@
     {
       "source": "/(.*)",
       "destination": "/index.html"
+    },
+    {
+      "source": "storage1.picacomic.com/static/tobeimg/:__PATH*",
+      "destination": "pikaimg.pro-ivan.com/:__PATH"
     }
   ]
 }
