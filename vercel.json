@@ -18,10 +18,12 @@
     {
       "source": "/(.*)",
       "destination": "/index.html"
-    },
+    }
+  ],
+  "redirects": [
     {
       "source": "storage1.picacomic.com/static/tobeimg/:__PATH*",
-      "destination": "pikaimg.pro-ivan.com/:__PATH"
+      "destination": "picaimg.pro-ivan.com/:__PATH"
     }
-  ]
+  ],
 }
