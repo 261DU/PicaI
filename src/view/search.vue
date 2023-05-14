@@ -95,7 +95,7 @@ function init() {
       {
         keyword: keyword.value,
         categories: category.value,
-        s: sort.value,
+        sort: sort.value,
       },
       {
         params: {
