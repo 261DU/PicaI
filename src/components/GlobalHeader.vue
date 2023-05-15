@@ -29,7 +29,7 @@ header.global-header.flex-center(
         @click='userDropdownShow = !userDropdownShow'
       )
         .avatar
-          img(src='https://i.loli.net/2021/03/26/QPOtzh1XbF2eujd.png')
+          img(:src="userData.avatar.fileUrl")
         .angle
           icon
             angle-down
@@ -60,7 +60,7 @@ header.global-header.flex-center(
                   .banner-bg
                   router-link.plain.name(to='/profile')
                     img.avatar(
-                      src='https://i.loli.net/2021/03/26/QPOtzh1XbF2eujd.png'
+                      :src="userData.avatar.fileUrl"
                     )
                 .details
                   router-link.plain.user-name(to='/profile') {{ userData.name }}
