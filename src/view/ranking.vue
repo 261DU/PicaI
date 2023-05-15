@@ -80,7 +80,7 @@ function init() {
   error.value = ''
 
   axios
-    .post<ApiResponseComics>(
+    .get(
       `${API_BASE}/comics/leaderboard`,
       {
         ct: 'VC',
