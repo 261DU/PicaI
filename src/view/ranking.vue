@@ -81,7 +81,7 @@ function init() {
 
   axios
     .get(
-      `${API_BASE}/comics/leaderboard`,
+      `${API_BASE}/comics/leaderboard?ct=VC&tt=${sort.value}`,
       {
         ct: 'VC',
         tt: sort.value,
