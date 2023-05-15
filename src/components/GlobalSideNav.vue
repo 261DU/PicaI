@@ -24,7 +24,7 @@ aside.global-site-nav(:class='{ "is-hide": !sideNavShow }')
           li
             router-link(to='/ranking')
               icon
-                Bar-Chart
+                Bar_Chart
               | Ranking
 
       .group
@@ -61,7 +61,7 @@ import { onMounted, watch } from 'vue'
 import { PROJECT_NAME } from '../config'
 import { sideNavShow } from './states'
 import { userData } from './userData'
-import { Home, Heart, User, Fingerprint, Bookmark, Folder, Search, Bar-Chart } from '@vicons/fa'
+import { Home, Heart, User, Fingerprint, Bookmark, Folder, Search, Bar_Chart } from '@vicons/fa'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
