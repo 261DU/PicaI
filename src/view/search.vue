@@ -22,7 +22,7 @@ mixin pagenator
 
   label
     strong Keyword
-    input(v-model='Keyword', type='text')
+    input(v-model='keyword', type='text')
   div
     button(@click.prevent='gotoUrl') Search
 
@@ -138,9 +138,9 @@ function handlePagePrompt() {
 }
 
 function gotoUrl() {
-  if (!Keyword.value) return
+  if (!keyword.value) return
   
-  router.push(`/search/${Keyword.value}`)
+  router.push(`/search/${keyword.value}`)
 }
 
 // Refresh when the keyword changes
