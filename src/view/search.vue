@@ -30,7 +30,7 @@ mixin pagenator
       option(value="dd") 新到旧
       option(value="da") 旧到新
       option(value="ld") 最多爱心
-      option(value="da") 最多指名
+      option(value="vd") 最多指名
     
 
   div
