@@ -23,7 +23,8 @@ mixin pagenator
   label
     strong Keyword
     input(v-model='Keyword', type='text')
-  <label for="sort">Sort</label>
+  label
+    strong Sort
     <select id="sort" v-model="Sort">
       <option value="ua">默认</option>
       <option value="dd">新到旧</option>
