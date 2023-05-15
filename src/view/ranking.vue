@@ -27,6 +27,9 @@
 
   .loading.align-center(v-if='loading && !comics.length')
     placeholder
+    
+  section(v-if='comics.length', :class='{ "loading-cover": loading }')
+    books-list(:data='comics', :backTo='"/search/" + keyword')
 </template>
 
 <script setup lang="ts">
