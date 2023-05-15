@@ -68,9 +68,9 @@ const error = ref('')
  * ```
  */
 function init() {
-  sort.value = (route.query.sort as SortTypes) || 'ua'
+  sort.value = (route.query.sort as SortTypes) || 'H24'
 
-  if (keyword.value) {
+  if (sort.value) {
     setTitle(`${sort.value}`, 'Ranking')
   } else {
     setTitle('Ranking')
@@ -107,9 +107,8 @@ function init() {
 
 
 function gotoUrl() {
-  if (!Keyword.value) return
   
-  if (!Sort.value) Sort.value = 'ua'
+  if (!Sort.value) Sort.value = 'H24'
   
   router.push(`/ranking?sort=${Sort.value}`)
 }
@@ -124,7 +123,7 @@ router.afterEach((to, from) => {
 
 onMounted(() => {
   init()
-  setTitle('Search')
+  setTitle('Ranking')
 })
 </script>
 
