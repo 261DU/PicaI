@@ -12,11 +12,13 @@
       p hello, world
       p {{ time }}
     .card.flex-1
-      h2 Profile
+      h2 Function
       p
         router-link.button(to='/profile') profile
         | 
-        router-link.button(to='/favourite') favourite
+        router-link.button(to='/favourite') my favourite
+        | 
+        router-link.button(to='/search') search
 
 </template>
 
