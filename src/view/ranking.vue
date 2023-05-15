@@ -1,16 +1,4 @@
 <template lang="pug">
-mixin pagenator
-  .pagenator
-    button(@click='handlePageChange(page - 1)', :disabled='page <= 1')
-      icon
-        arrow-left
-    .page(@click='handlePagePrompt')
-      .cur-page {{ page }}
-      | /
-      .total-page {{ totalPages }}
-    button(@click='handlePageChange(page + 1)', :disabled='page >= totalPages')
-      icon
-        arrow-right
 
 #search-container
   .bread-crumb
@@ -21,23 +9,17 @@ mixin pagenator
       | Categories Index
 
   label
-    strong Keyword
-    input(v-model='Keyword', type='text')
-  label
     strong Sort
     select(v-model="Sort")
-      option(value="ua") 默认
-      option(value="dd") 新到旧
-      option(value="da") 旧到新
-      option(value="ld") 最多爱心
-      option(value="vd") 最多指名
+      option(value="H24") 近24小时
+      option(value="D7") 近7天
+      option(value="D30") 近30天
     
 
   div
-    button(@click.prevent='gotoUrl') Search
+    button(@click.prevent='gotoUrl') GO
 
-  h1(v-if='keyword') Search『{{ keyword }}』comics (page {{ page }})
-  h1(v-else) Advanced Search
+  h1 Ranking
 
   .info.error(v-if='error')
     .title Failed to get comics data
@@ -67,13 +49,11 @@ const router = useRouter()
 
 // const components = defineComponent({ BooksList })
 
-type SortTypes = 'ua' | 'dd' | 'da' | 'ld' | 'vd'
-const keyword = ref('')
-const Keyword = ref('')
+type SortTypes = 'H24' | 'D7' | 'D30'
 const category = ref('')
 const page = ref(1)
 const totalPages = ref(1)
-const sort = ref<SortTypes>('ua')
+const sort = ref<SortTypes>('H24')
 const Sort = ref('')
 
 const comics = ref<any[]>([])
@@ -93,38 +73,32 @@ const error = ref('')
  * ```
  */
 function init() {
-  keyword.value = (route.params.keyword as string) || ''
-  category.value = (route.query.category as string) || ''
-  page.value = parseInt(route.query.page as string) || 1
   sort.value = (route.query.sort as SortTypes) || 'ua'
 
   if (keyword.value) {
-    setTitle(`${keyword.value} (page ${page.value})`, 'Search')
+    setTitle(`${sort.value}`, 'Ranking')
   } else {
-    setTitle('Search')
+    setTitle('Ranking')
   }
 
   loading.value = true
   error.value = ''
 
   axios
-    .post<ApiResponseComics>(
-      `${API_BASE}/comics/advanced-search`,
+    .get<ApiResponseComics>(
+      `${API_BASE}/comics/leaderboard`,
       {
-        keyword: keyword.value,
-        categories: category.value,
-        sort: sort.value,
+        ct: 'VC',
+        tt: sort.value,
       },
       {
         params: {
-          page: page.value,
         },
       }
     )
     .then(
       ({ data }) => {
-        comics.value = data.body?.comics.docs
-        totalPages.value = data.body?.comics.pages
+        comics.value = data.body?.comics
       },
       (err) => {
         console.warn('Failed to get comics data', err)
@@ -136,33 +110,19 @@ function init() {
     })
 }
 
-function handlePageChange(toPage: number) {
-  router.push({
-    query: { page: Math.min(totalPages.value, Math.max(1, toPage)) },
-  })
-}
-
-function handlePagePrompt() {
-  const p = prompt('Page jump to', '' + page.value) || ''
-  if (!isNaN(parseInt(p))) {
-    handlePageChange(parseInt(p))
-  }
-}
 
 function gotoUrl() {
   if (!Keyword.value) return
   
   if (!Sort.value) Sort.value = 'ua'
   
-  router.push(`/search/${Keyword.value}?sort=${Sort.value}`)
+  router.push(`/ranking?sort=${Sort.value}`)
 }
 
 // Refresh when the keyword changes
 router.afterEach((to, from) => {
   console.log('after route', { to })
   if (to.name === from.name && to !== from) {
-    keyword.value = route.params.keyword as string
-    page.value = parseInt(to.query.page as string) || 1
     init()
   }
 })
