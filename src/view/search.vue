@@ -22,7 +22,7 @@ mixin pagenator
 
   label
     strong Keyword
-    input(v-model='keyword', type='text')
+    input(v-model='Keyword', type='text')
   div
     button(@click.prevent='gotoUrl') Search
 
@@ -59,6 +59,7 @@ const router = useRouter()
 
 type SortTypes = 'ua' | 'dd' | 'da' | 'ld' | 'vd'
 const keyword = ref('')
+const Keyword = ref('')
 const category = ref('')
 const page = ref(1)
 const totalPages = ref(1)
@@ -138,9 +139,9 @@ function handlePagePrompt() {
 }
 
 function gotoUrl() {
-  if (!keyword.value) return
+  if (!Keyword.value) return
   
-  router.push(`/search/${keyword.value}`)
+  router.push(`/search/${Keyword.value}`)
 }
 
 // Refresh when the keyword changes
