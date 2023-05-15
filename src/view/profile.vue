@@ -10,6 +10,8 @@
         span.title {{ userData.title }}
         | &nbsp;
         span.uid @{{ userData.email }}
+      lable(v-if="!userData.isPunched")
+        button(@click='punchin') Punchin
     .card.slogan
       h2 Slogan
       .slogan-view.flex(
@@ -66,6 +68,19 @@ function handleSloganEdit() {
     .catch((e) => {
       sloganLoading.value = false
       console.warn('Faild to modify slogan', e)
+    })
+}
+
+function punchin(){
+  axios
+    .post(`${API_BASE}/users/punch-in`, {
+      
+    })
+    .then(() => {
+      return getProfile()
+    })
+    .catch((e) => {
+      console.warn('Faild to punchin!', e)
     })
 }
 
