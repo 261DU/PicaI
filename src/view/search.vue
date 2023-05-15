@@ -23,6 +23,15 @@ mixin pagenator
   label
     strong Keyword
     input(v-model='Keyword', type='text')
+  <label for="sort">Sort</label>
+    <select id="sort" v-model="Sort">
+      <option value="ua">默认</option>
+      <option value="dd">新到旧</option>
+      <option value="da">旧到新</option>
+      <option value="ld">最多爱心</option>
+      <option value="da">最多指名</option>
+    </select>
+
   div
     button(@click.prevent='gotoUrl') Search
 
@@ -64,6 +73,7 @@ const category = ref('')
 const page = ref(1)
 const totalPages = ref(1)
 const sort = ref<SortTypes>('ua')
+const Sort = ref('')
 
 const comics = ref<any[]>([])
 const loading = ref(false)
@@ -141,7 +151,9 @@ function handlePagePrompt() {
 function gotoUrl() {
   if (!Keyword.value) return
   
-  router.push(`/search/${Keyword.value}`)
+  if (!Sort.value) Sort.value = 'ua'
+  
+  router.push(`/search/${Keyword.value}?sort=${Sort.value}`)
 }
 
 // Refresh when the keyword changes
