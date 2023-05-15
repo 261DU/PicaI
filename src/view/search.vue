@@ -25,13 +25,18 @@ mixin pagenator
     input(v-model='Keyword', type='text')
   label
     strong Sort
-    <select id="sort" v-model="Sort">
-      <option value="ua">默认</option>
-      <option value="dd">新到旧</option>
-      <option value="da">旧到新</option>
-      <option value="ld">最多爱心</option>
-      <option value="da">最多指名</option>
-    </select>
+    select(v-model="Sort")
+      option(value="ua")
+        默认
+      option(value="dd")
+        新到旧
+      option(value="da")
+        旧到新
+      option(value="ld")
+        最多爱心
+      option(value="da")
+        最多指名
+    
 
   div
     button(@click.prevent='gotoUrl') Search
