@@ -85,7 +85,7 @@ router.addRoute({
 // Ranking
 router.addRoute({
   path: '/ranking',
-  name: 'search',
+  name: 'ranking',
   component: () => import('./view/ranking.vue'),
 })
 
