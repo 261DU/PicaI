@@ -20,6 +20,12 @@ mixin pagenator
       | 
       | Categories Index
 
+  label
+    strong Keyword
+    input(v-model='Keyword', type='text')
+  div
+    button(@click=`window.location.href = '/search/' + this.Keyword`) Login
+
   h1(v-if='keyword') Search『{{ keyword }}』comics (page {{ page }})
   h1(v-else) Advanced Search
 
