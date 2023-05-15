@@ -24,7 +24,7 @@ mixin pagenator
     strong Keyword
     input(v-model='Keyword', type='text')
   div
-    button(@click=`window.location.href = '/search/' + this.Keyword`) Login
+    button(@click='gotoUrl') Search
 
   h1(v-if='keyword') Search『{{ keyword }}』comics (page {{ page }})
   h1(v-else) Advanced Search
@@ -135,6 +135,12 @@ function handlePagePrompt() {
   if (!isNaN(parseInt(p))) {
     handlePageChange(parseInt(p))
   }
+}
+
+function gotoUrl() {
+  if (!Keyword.value) return
+  
+  window.location.href = '/search/' + Keyword.value
 }
 
 // Refresh when the keyword changes
