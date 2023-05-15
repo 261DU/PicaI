@@ -27,11 +27,6 @@
 
   .loading.align-center(v-if='loading && !comics.length')
     placeholder
-
-  section(v-if='comics.length', :class='{ "loading-cover": loading }')
-    +pagenator
-    books-list(:data='comics', :backTo='"/search/" + keyword')
-    +pagenator
 </template>
 
 <script setup lang="ts">
