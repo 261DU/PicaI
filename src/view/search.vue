@@ -24,7 +24,7 @@ mixin pagenator
     strong Keyword
     input(v-model='Keyword', type='text')
   div
-    button(@click='gotoUrl') Search
+    button(@click.prevent='gotoUrl') Search
 
   h1(v-if='keyword') Search『{{ keyword }}』comics (page {{ page }})
   h1(v-else) Advanced Search
@@ -140,7 +140,7 @@ function handlePagePrompt() {
 function gotoUrl() {
   if (!Keyword.value) return
   
-  window.location.href = '/search/' + Keyword.value
+  location.href = '/search/' + Keyword.value
 }
 
 // Refresh when the keyword changes
