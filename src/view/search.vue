@@ -140,8 +140,7 @@ function handlePagePrompt() {
 function gotoUrl() {
   if (!Keyword.value) return
   
-  search_target = '/search/' + Keyword.value
-  router.push(search_target as string)
+  router.push(`/search/${Keyword.value}`)
 }
 
 // Refresh when the keyword changes
