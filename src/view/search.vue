@@ -26,12 +26,12 @@ mixin pagenator
   label
     strong Sort
     <select id="sort" v-model="Sort">
-       <option value="ua">默认</option>
-       <option value="dd">新到旧</option>
-       <option value="da">旧到新</option>
-       <option value="ld">最多爱心</option>
-       <option value="da">最多指名</option>
-     </select>
+      <option value="ua">默认</option>
+      <option value="dd">新到旧</option>
+      <option value="da">旧到新</option>
+      <option value="ld">最多爱心</option>
+      <option value="da">最多指名</option>
+    </select>
     
 
   div
