@@ -16,6 +16,11 @@ aside.global-site-nav(:class='{ "is-hide": !sideNavShow }')
               icon
                 Folder
               | Categories Index
+          li
+            router-link(to='/search')
+              icon
+                Search
+              | Search
 
       .group
         .title User
@@ -51,7 +56,7 @@ import { onMounted, watch } from 'vue'
 import { PROJECT_NAME } from '../config'
 import { sideNavShow } from './states'
 import { userData } from './userData'
-import { Home, Heart, User, Fingerprint, Bookmark,Folder } from '@vicons/fa'
+import { Home, Heart, User, Fingerprint, Bookmark, Folder, Search } from '@vicons/fa'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
