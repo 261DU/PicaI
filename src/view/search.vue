@@ -140,7 +140,8 @@ function handlePagePrompt() {
 function gotoUrl() {
   if (!Keyword.value) return
   
-  location.href = '/search/' + Keyword.value
+  search_target = '/search/' + Keyword.value
+  router.push(search_target as string)
 }
 
 // Refresh when the keyword changes
