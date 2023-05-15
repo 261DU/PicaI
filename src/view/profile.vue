@@ -4,7 +4,7 @@
     //- h1 My Profile
     .card.metadata.align-center
       .avatar
-        img(src= userData.fileUrl onerror= "this.src='https://i.loli.net/2021/03/26/QPOtzh1XbF2eujd.png'")
+        img(src= userData.fileUrl)
       h1.name {{ userData.name }}
       .extra
         span.title {{ userData.title }}
