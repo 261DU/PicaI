@@ -8,9 +8,8 @@ footer.global-footer
           router-link(to='/about') About us
         li
           router-link(to='/categories') Categories
-          ul
-            li
-              router-link(to='/comics/妹妹系') 妹妹系
+        li
+          router-link(to='/search') Search
 
     section.flex-1
       h4 Follow us
@@ -19,6 +18,11 @@ footer.global-footer
           ul
             li
               e-link(href='https://github.com/FreeNowOrg') @FreeNowOrg
+      ul
+        li Pro-Ivan Studio
+          ul
+            li
+              e-link(href='https://pro-ivan.com') Pro-ivan.com
 
     section.flex-1
       h4 Friend links
