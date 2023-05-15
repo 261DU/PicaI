@@ -1,13 +1,13 @@
 <template lang="pug">
 #about-container
-  h1 About us
+  h1 关于
 
-  h2 Lorem ipsum
+  h2 使用方法
   .card
-    p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    p Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    p Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-    p Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    p 本站主架构基于Pica Comic Now项目
+    p 源项目没做搜索栏，我也没那能力重开发，因此你只能使用以下方式使用搜索：
+    p 访问：/search/{搜索内容}?sort={排序方式}
+    p 排序方式：ua: 默认, dd: 新到旧, da: 旧到新, ld: 最多爱心, vd: 最多指名
 </template>
 
 <script setup lang="ts">
