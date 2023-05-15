@@ -82,6 +82,13 @@ router.addRoute({
   component: () => import('./view/search.vue'),
 })
 
+// Ranking
+router.addRoute({
+  path: '/ranking',
+  name: 'search',
+  component: () => import('./view/ranking.vue'),
+})
+
 // About
 router.addRoute({
   path: '/about',
