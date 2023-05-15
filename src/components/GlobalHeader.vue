@@ -29,7 +29,7 @@ header.global-header.flex-center(
         @click='userDropdownShow = !userDropdownShow'
       )
         .avatar
-          img(:src="userData.avatar.fileUrl")
+          img(src='https://i.loli.net/2021/03/26/QPOtzh1XbF2eujd.png')
         .angle
           icon
             angle-down
