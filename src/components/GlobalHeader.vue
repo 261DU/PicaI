@@ -28,8 +28,10 @@ header.global-header.flex-center(
         :class='{ "is-show": userDropdownShow }',
         @click='userDropdownShow = !userDropdownShow'
       )
-        .avatar
+        .avatar(v-if='!userData')
           img(src='https://i.loli.net/2021/03/26/QPOtzh1XbF2eujd.png')
+        .avatar(v-if='userData')
+          img(:src="userData.avatar.fileUrl")
         .angle
           icon
             angle-down
@@ -65,14 +67,6 @@ header.global-header.flex-center(
                 .details
                   router-link.plain.user-name(to='/profile') {{ userData.name }}
                   .uid {{ userData.email }}
-              .item.user-area
-                .user-dropdown(@click.stop='')
-                  a.pointer.plain.dropdown-btn(
-                    :class='{ "is-show": userDropdownShow }',
-                    @click='userDropdownShow = !userDropdownShow'
-                  )
-                    .avatar
-                      img(:src="userData.avatar.fileUrl")
           
             li(v-if='userData')
               router-link.plain(to='/favourite') My Favourites
