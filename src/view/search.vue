@@ -48,7 +48,7 @@ mixin pagenator
 
   section(v-if='comics.length', :class='{ "loading-cover": loading }')
     +pagenator
-    books-list(:data='comics', :backTo='"/search/" + keyword')
+    books-list(:data='comics', :backTo='"/search/" + keyword + "?sort=" + sort')
     +pagenator
 </template>
 
