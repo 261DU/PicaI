@@ -29,7 +29,7 @@
     placeholder
     
   section(v-if='comics.length', :class='{ "loading-cover": loading }')
-    books-list(:data='comics', :backTo='"/ranking" + "?sort=" + sort')
+    books-list(:data='comics', :backTo='"/ranking" + "?sort=" + sort + "&page=" + page ')
 </template>
 
 <script setup lang="ts">
