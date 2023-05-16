@@ -100,9 +100,12 @@ function init() {
 
   if (keyword.value) {
     setTitle(`${keyword.value} (page ${page.value})`, 'Search')
+    Keyword.value = keyword.value
   } else {
     setTitle('Search')
   }
+  
+  Sort.value = sort.value
 
   loading.value = true
   error.value = ''
