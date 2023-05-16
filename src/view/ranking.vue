@@ -126,8 +126,8 @@ router.afterEach((to, from) => {
 })
 
 onMounted(() => {
-  init()
   setTitle('Ranking')
+  init()
 })
 </script>
 
