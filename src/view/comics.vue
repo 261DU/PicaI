@@ -19,6 +19,18 @@ mixin pagenator
         arrow-left
       | 
       | Categories Index
+      
+    label
+    strong Sort
+    select(v-model="Sort")
+      option(value="ua") 默认
+      option(value="dd") 新到旧
+      option(value="da") 旧到新
+      option(value="ld") 最多爱心
+      option(value="vd") 最多指名
+    
+  div
+    button(@click.prevent='gotoUrl') Search
 
   h1(v-if='category') Comics in {{ category }}
   h1(v-else) Comics list
@@ -56,6 +68,7 @@ const category = ref('')
 const page = ref(1)
 const totalPages = ref(1)
 const sort = ref<SortTypes>('ua')
+const Sort = ref('')
 
 const comics = ref<any[]>([])
 const loading = ref(false)
@@ -88,6 +101,7 @@ function init() {
 
   if (category.value) {
     setTitle(`${category.value} (page ${page.value})`, 'Comics')
+    Sort.value = sort.value
   } else {
     setTitle(`page ${page.value}`, 'Comics')
   }
@@ -117,6 +131,13 @@ function init() {
     .finally(() => {
       loading.value = false
     })
+}
+
+function gotoUrl() {
+  
+  if (!Sort.value) Sort.value = 'H24'
+  
+  router.push(`/comics?sort=${Sort.value}`)
 }
 
 function handlePageChange(toPage: number) {
