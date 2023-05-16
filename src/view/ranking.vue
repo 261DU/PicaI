@@ -75,6 +75,7 @@ function init() {
 
   if (sort.value) {
     setTitle(`${sort.value}`, 'Ranking')
+    Sort.value = sort.value
   } else {
     setTitle('Ranking')
   }
