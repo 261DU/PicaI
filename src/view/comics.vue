@@ -19,8 +19,8 @@ mixin pagenator
         arrow-left
       | 
       | Categories Index
-      
-    label
+    
+  label
     strong Sort
     select(v-model="Sort")
       option(value="ua") 默认
@@ -29,8 +29,8 @@ mixin pagenator
       option(value="ld") 最多爱心
       option(value="vd") 最多指名
     
-  div
-    button(@click.prevent='gotoUrl') Search
+    div
+      button(@click.prevent='gotoUrl') Search
 
   h1(v-if='category') Comics in {{ category }}
   h1(v-else) Comics list
