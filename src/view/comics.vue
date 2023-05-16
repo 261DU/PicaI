@@ -21,6 +21,9 @@ mixin pagenator
       | Categories Index
     
   label
+    strong Category
+    input(v-model='Category', type='text')
+  label
     strong Sort
     select(v-model="Sort")
       option(value="ua") 默认
@@ -65,6 +68,7 @@ const router = useRouter()
 
 type SortTypes = 'ua' | 'dd' | 'da' | 'ld' | 'vd'
 const category = ref('')
+const Category = ref('')
 const page = ref(1)
 const totalPages = ref(1)
 const sort = ref<SortTypes>('ua')
@@ -101,10 +105,12 @@ function init() {
 
   if (category.value) {
     setTitle(`${category.value} (page ${page.value})`, 'Comics')
-    Sort.value = sort.value
+    Category.value = category.value
   } else {
     setTitle(`page ${page.value}`, 'Comics')
   }
+  
+  Sort.value = sort.value
 
   loading.value = true
   error.value = ''
@@ -134,10 +140,12 @@ function init() {
 }
 
 function gotoUrl() {
+
+  if (!Category.value) return
   
-  if (!Sort.value) Sort.value = 'H24'
+  if (!Sort.value) Sort.value = 'ua'
   
-  router.push(`/comics?sort=${Sort.value}`)
+  router.push(`/comics/${Category.value}?sort=${Sort.value}`)
 }
 
 function handlePageChange(toPage: number) {
