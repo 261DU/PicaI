@@ -150,7 +150,7 @@ function gotoUrl() {
 
 function handlePageChange(toPage: number) {
   router.push({
-    query: { page: Math.min(totalPages.value, Math.max(1, toPage)) },
+    query: { page: Math.min(totalPages.value, Math.max(1, toPage)), sort: sort.value },
   })
 }
 
