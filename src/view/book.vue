@@ -37,6 +37,9 @@
             .chinese-team
               strong Chinese translator:
               router-link(:to='"/search/" + book.chineseTeam') {{ book.chineseTeam }}
+            .uploader
+              strong Uploader:
+              router-link(:to='"/search/" + book._creator.name') {{ book.chineseTeam }}
             .tags-list
               strong Categories:
               router-link.tag(
@@ -45,10 +48,10 @@
               ) {{ item }}
             .stats.flex
               .likes.flex-1
-                strong Likes
+                strong Likes:
                 span {{ book.likesCount }}
               .views.flex-1
-                strong views
+                strong Views:
                 span {{ book.viewsCount }}
 
       .tags-list
