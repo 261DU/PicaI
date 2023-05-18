@@ -13,7 +13,7 @@
       lable(v-if="!userData.isPunched")
         button(@click='punchin') Punchin
       lable(v-else)
-        button(:disabled) Punched
+        button(:disabled='') Punched
     .card.slogan
       h2 Slogan
       .slogan-view.flex(
