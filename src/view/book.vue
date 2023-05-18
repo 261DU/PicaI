@@ -39,7 +39,7 @@
               router-link(:to='"/search/" + book.chineseTeam') {{ book.chineseTeam }}
             .uploader
               strong Uploader:
-              router-link(:to='"/search/" + book._creator.name') {{ book.chineseTeam }}
+              router-link(:to='"/search/" + book._creator.name') {{ book._creator.name }}
             .tags-list
               strong Categories:
               router-link.tag(
