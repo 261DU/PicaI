@@ -193,7 +193,7 @@ function getComments(page = 1) {
     })
 }
 
-function getNextComments() {
+function getNextComments(comments) {
   commentsLoading.value = true
   axios
     .get(`${API_BASE}/comics/${bookid.value}/comments`, {
