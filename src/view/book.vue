@@ -85,7 +85,7 @@
         .pages(v-for='item in comments') 
           strong {{ item._user.name }}:
           | {{ item.content }}    At {{ item.created_at }}
-        lable(v-if="comments.body.comments.page < comments.body.comments.pages || commentsLoading || !comments.length")
+        lable(v-if="commentsLoading || !comments.length || comments.body.comments.page < comments.body.comments.pages")
           button(@click='getComments(parseInt(comments.body.comments.page) + 1)') Load more...
       details
         pre {{ comments }}
