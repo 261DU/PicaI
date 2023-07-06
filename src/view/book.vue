@@ -85,8 +85,6 @@
         .pages(v-for='item in comments') 
           strong {{ item._user.name }}:
           | {{ item.content }}    At {{ item.created_at }}
-        lable
-          button(@click='getComments') Load more...
       details
         pre {{ comments }}
 </template>
@@ -176,14 +174,17 @@ function getEps(page = 1) {
 
 function getComments(page = 1) {
   commentsLoading.value = true
-  console.info(parseInt(comments.value.body.comments.page) + 1)
   axios
     .get(`${API_BASE}/comics/${bookid.value}/comments`, {
-      params: { page: parseInt(comments.value.body.comments.page) + 1 },
+      params: { page },
     })
     .then(
       ({ data }: any) => {
         comments.value = [...comments.value, ...data.body.comments.docs]
+        if (data.body.comments.page < data.body.comments.pages && data.body.comments.page < 8) {
+          console.info('Get more comments')
+          getComments(data.body.comments.page + 1)
+        }
       },
       (err) => {
         errorTitle.value = 'Failed to get book comments'
