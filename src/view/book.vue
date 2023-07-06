@@ -85,7 +85,7 @@
         .pages(v-for='item in comments') 
           strong {{ item._user.name }}:
           | {{ item.content }}    At {{ item.created_at }}
-        lable(v-if="commentsLoading || !comments.length || comments.body.comments.page < comments.body.comments.pages")
+        lable
           button(@click='getComments(parseInt(comments.body.comments.page) + 1)') Load more...
       details
         pre {{ comments }}
@@ -174,6 +174,8 @@ function getEps(page = 1) {
 }
 
 function getComments(page = 1) {
+  if(comments.body.comments.page < comments.body.comments.pages)
+    return false
   commentsLoading.value = true
   axios
     .get(`${API_BASE}/comics/${bookid.value}/comments`, {
