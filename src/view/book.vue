@@ -144,7 +144,6 @@ function init() {
     })
 
   getEps(1)
-  comments.value.body.comments.page = 1
   getComments(1)
 }
 
