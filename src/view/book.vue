@@ -75,6 +75,18 @@
         ) {{ item.title }}
       details
         pre {{ eps }}
+
+  section.book-eps
+    .card
+      h2#comments Comments
+      p.loading.align-center(v-if='commentsLoading || !comments.length')
+        placeholder
+      .flex-column.flex-1.gap-1(v-if='comments.length')
+        router-link.ep-link.plain(
+          v-for='item in comments'
+        ) {{ item.content }}
+      details
+        pre {{ comments }}
 </template>
 
 <script setup lang="ts">
@@ -100,8 +112,10 @@ const route = useRoute()
 const bookid = ref(route.params.bookid as string)
 const book = ref<any>(null)
 const eps = ref<any[]>([])
+const comments = ref<any[]>([])
 const bookLoading = ref(false)
 const epsLoading = ref(false)
+const commentsLoading = ref(false)
 const errorTitle = ref('')
 const errorMsg = ref('')
 
@@ -130,6 +144,7 @@ function init() {
     })
 
   getEps(1)
+  getComments(1)
 }
 
 function getEps(page = 1) {
@@ -153,6 +168,30 @@ function getEps(page = 1) {
     )
     .finally(() => {
       epsLoading.value = false
+    })
+}
+
+function getComments(page = 1) {
+  commentsLoading.value = true
+  axios
+    .get(`${API_BASE}/comics/${bookid.value}/comments`, {
+      params: { page },
+    })
+    .then(
+      ({ data }: any) => {
+        comments.value = [...comments.value, ...data.body.comments.docs]
+        if (data.body.comments.page < data.body.comments.pages) {
+          console.info('Get more comments')
+          getComments(data.body.comments.page + 1)
+        }
+      },
+      (err) => {
+        errorTitle.value = 'Failed to get book comments'
+        errorMsg.value = getErrMsg(err)
+      }
+    )
+    .finally(() => {
+      commentsLoading.value = false
     })
 }
 
