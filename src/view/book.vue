@@ -174,7 +174,7 @@ function getEps(page = 1) {
     })
 }
 
-function getComments(page = Commentspage) {
+function getComments(page = Commentspage.value) {
   commentsLoading.value = true
   axios
     .get(`${API_BASE}/comics/${bookid.value}/comments`, {
@@ -183,6 +183,7 @@ function getComments(page = Commentspage) {
     .then(
       ({ data }: any) => {
         comments.value = [...comments.value, ...data.body.comments.docs]
+        Commentspage.value = Commentspage.value + 1
       },
       (err) => {
         errorTitle.value = 'Failed to get book comments'
