@@ -81,10 +81,10 @@
       h2#comments Comments
       p.loading.align-center(v-if='commentsLoading || !comments.length')
         placeholder
-      .flex-column.flex-1.gap-1(v-if='comments.length')
+      .book-info.right.flex-column.flex-column.flex-1.gap-1(v-if='comments.length')
         router-link.ep-link.plain(
           v-for='item in comments'
-        ) {{ item.content }}
+        ) {{ item.content }}：{{ item.content }}
       details
         pre {{ comments }}
 </template>
