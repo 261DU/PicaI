@@ -160,7 +160,7 @@ function getEps(page = 1) {
         eps.value = [...eps.value, ...data.body.eps.docs]
         if (data.body.eps.page < data.body.eps.pages) {
           console.info('Get more Episodes')
-          getComments(parseInt(data.body.eps.page) + 1)
+          getComments(data.body.eps.page + 1)
         }
       },
       (err) => {
@@ -193,24 +193,8 @@ function getComments(page = 1) {
     })
 }
 
-function getNextComments(comments) {
-  commentsLoading.value = true
-  axios
-    .get(`${API_BASE}/comics/${bookid.value}/comments`, {
-      params: { parseInt(comments.body.comments.page) + 1 },
-    })
-    .then(
-      ({ data }: any) => {
-        comments.value = [...comments.value, ...data.body.comments.docs]
-      },
-      (err) => {
-        errorTitle.value = 'Failed to get book comments'
-        errorMsg.value = getErrMsg(err)
-      }
-    )
-    .finally(() => {
-      commentsLoading.value = false
-    })
+function getNextComments() {
+  getComments(parseInt(comments.body.comments.page) + 1)
 }
 
 let bookmarkLoading = false
