@@ -82,9 +82,10 @@
       p.loading.align-center(v-if='commentsLoading || !comments.length')
         placeholder
       .book-info.right.flex-column.flex-column.flex-1.gap-1(v-if='comments.length')
-        router-link.ep-link.plain(
+        router-link.pages(
           v-for='item in comments'
-        ) {{ item.content }}：{{ item.content }}
+        ) strong {{ item._user.name }}
+          {{ item.content }} at {{ item.created_at }}
       details
         pre {{ comments }}
 </template>
