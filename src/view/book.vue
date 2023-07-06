@@ -85,7 +85,7 @@
         router-link.pages(
           v-for='item in comments'
         ) strong {{ item._user.name }}
-          {{ item.content }} at {{ item.created_at }}
+        {{ item.content }} at {{ item.created_at }}
       details
         pre {{ comments }}
 </template>
