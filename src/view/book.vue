@@ -86,7 +86,7 @@
           strong {{ item._user.name }}:
           | {{ item.content }}    At {{ item.created_at }}
         lable
-          button(@click='getNextComments') Load more...
+          button(@click='getComments') Load more...
       details
         pre {{ comments }}
 </template>
@@ -115,6 +115,7 @@ const bookid = ref(route.params.bookid as string)
 const book = ref<any>(null)
 const eps = ref<any[]>([])
 const comments = ref<any[]>([])
+var Commentspage = 1
 const bookLoading = ref(false)
 const epsLoading = ref(false)
 const commentsLoading = ref(false)
@@ -173,7 +174,7 @@ function getEps(page = 1) {
     })
 }
 
-function getComments(page = 1) {
+function getComments(page = Commentspage) {
   commentsLoading.value = true
   axios
     .get(`${API_BASE}/comics/${bookid.value}/comments`, {
@@ -182,6 +183,7 @@ function getComments(page = 1) {
     .then(
       ({ data }: any) => {
         comments.value = [...comments.value, ...data.body.comments.docs]
+        Commentspage = Commentspage + 1
       },
       (err) => {
         errorTitle.value = 'Failed to get book comments'
@@ -191,10 +193,6 @@ function getComments(page = 1) {
     .finally(() => {
       commentsLoading.value = false
     })
-}
-
-function getNextComments() {
-  getComments(parseInt(comments.body.comments.page) + 1)
 }
 
 let bookmarkLoading = false
