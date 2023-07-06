@@ -115,7 +115,7 @@ const bookid = ref(route.params.bookid as string)
 const book = ref<any>(null)
 const eps = ref<any[]>([])
 const comments = ref<any[]>([])
-var Commentspage = 1
+var Commentspage = ref(1)
 const bookLoading = ref(false)
 const epsLoading = ref(false)
 const commentsLoading = ref(false)
@@ -160,8 +160,8 @@ function getEps(page = 1) {
       ({ data }: any) => {
         eps.value = [...eps.value, ...data.body.eps.docs]
         if (data.body.eps.page < data.body.eps.pages) {
-          console.info('Get more Episodes')
-          getComments(data.body.eps.page + 1)
+          console.info('Get more eps')
+          getEps(data.body.eps.page + 1)
         }
       },
       (err) => {
@@ -183,7 +183,6 @@ function getComments(page = Commentspage) {
     .then(
       ({ data }: any) => {
         comments.value = [...comments.value, ...data.body.comments.docs]
-        Commentspage = Commentspage + 1
       },
       (err) => {
         errorTitle.value = 'Failed to get book comments'
