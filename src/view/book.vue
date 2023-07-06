@@ -158,10 +158,6 @@ function getEps(page = 1) {
     .then(
       ({ data }: any) => {
         eps.value = [...eps.value, ...data.body.eps.docs]
-        if (data.body.eps.page < data.body.eps.pages) {
-          console.info('Get more eps')
-          getEps(data.body.eps.page + 1)
-        }
       },
       (err) => {
         errorTitle.value = 'Failed to get book episodes'
