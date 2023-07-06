@@ -173,12 +173,12 @@ function getEps(page = 1) {
     })
 }
 
-function getComments(page = parseInt(comments.value.body.comments.page) + 1) {
+function getComments(page = 1) {
   commentsLoading.value = true
-  console.info(page)
+  console.info(parseInt(comments.value.body.comments.page) + 1)
   axios
     .get(`${API_BASE}/comics/${bookid.value}/comments`, {
-      params: { page },
+      params: { page: parseInt(comments.value.body.comments.page) + 1 },
     })
     .then(
       ({ data }: any) => {
