@@ -182,7 +182,7 @@ function getComments(page = 1) {
         comments.value = [...comments.value, ...data.body.comments.docs]
         if (data.body.comments.page < data.body.comments.pages && data.body.comments.page < 8) {
           console.info('Get more comments')
-          getComments(data.body.comments.page + 1)
+          getComments(parseInt(data.body.comments.page) + 1)
         }
       },
       (err) => {
