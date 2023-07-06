@@ -115,7 +115,6 @@ const bookid = ref(route.params.bookid as string)
 const book = ref<any>(null)
 const eps = ref<any[]>([])
 const comments = ref<any[]>([])
-const Commentspage = ref(1)
 const bookLoading = ref(false)
 const epsLoading = ref(false)
 const commentsLoading = ref(false)
@@ -174,7 +173,7 @@ function getEps(page = 1) {
     })
 }
 
-function getComments(page = comments.value.body.comments.page) {
+function getComments(page = parseInt(comments.value.body.comments.page) + 1) {
   commentsLoading.value = true
   axios
     .get(`${API_BASE}/comics/${bookid.value}/comments`, {
@@ -183,7 +182,6 @@ function getComments(page = comments.value.body.comments.page) {
     .then(
       ({ data }: any) => {
         comments.value = [...comments.value, ...data.body.comments.docs]
-        Commentspage.value = Commentspage.value + 1
       },
       (err) => {
         errorTitle.value = 'Failed to get book comments'
