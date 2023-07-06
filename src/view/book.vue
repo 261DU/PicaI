@@ -86,7 +86,7 @@
           strong {{ item._user.name }}:
           | {{ item.content }}    At {{ item.created_at }}
         lable
-          button(@click='getComments(parseInt(comments.body.comments.page) + 1)') Load more...
+          button(@click='getNextComments') Load more...
       details
         pre {{ comments }}
 </template>
@@ -178,6 +178,26 @@ function getComments(page = 1) {
   axios
     .get(`${API_BASE}/comics/${bookid.value}/comments`, {
       params: { page },
+    })
+    .then(
+      ({ data }: any) => {
+        comments.value = [...comments.value, ...data.body.comments.docs]
+      },
+      (err) => {
+        errorTitle.value = 'Failed to get book comments'
+        errorMsg.value = getErrMsg(err)
+      }
+    )
+    .finally(() => {
+      commentsLoading.value = false
+    })
+}
+
+function getNextComments() {
+  commentsLoading.value = true
+  axios
+    .get(`${API_BASE}/comics/${bookid.value}/comments`, {
+      params: { parseInt(comments.body.comments.page) + 1 },
     })
     .then(
       ({ data }: any) => {
