@@ -174,8 +174,6 @@ function getEps(page = 1) {
 }
 
 function getComments(page = 1) {
-  if(comments.body.comments.page >= comments.body.comments.pages)
-    return
   commentsLoading.value = true
   axios
     .get(`${API_BASE}/comics/${bookid.value}/comments`, {
