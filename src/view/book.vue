@@ -81,7 +81,7 @@
       h2#comments Comments({{book.commentsCount}})
       p.loading.align-center(v-if='commentsLoading || !comments.length')
         placeholder
-      flex-column.flex-1.gap-1(v-if='comments.length')
+      .flex-column.flex-1.gap-1(v-if='comments.length')
         .pages(v-for='item in comments') 
           strong {{ item._user.name }}:
           | {{ item.content }}    At {{ item.created_at }}
@@ -182,7 +182,7 @@ function getComments(page = 1) {
         comments.value = [...comments.value, ...data.body.comments.docs]
         if (data.body.comments.page < data.body.comments.pages) {
           console.info('Get more comments')
-          getComments(data.body.comments.page + 1)
+          getComments(parseInt(data.body.comments.page) + 1)
         }
       },
       (err) => {
