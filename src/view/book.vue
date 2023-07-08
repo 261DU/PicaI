@@ -80,7 +80,7 @@
   section.book-eps
     .card
       h2 Reply
-        .slogan-edit(v-else)
+        .slogan-edit
           .flex
             label.flex-1(for='commentEdit')
               strong Your reply
