@@ -76,16 +76,16 @@
       details
         pre {{ eps }}
 
-  h2 Slogan
+  h2 Reply
   .slogan-edit(v-else)
     .flex
       label.flex-1(for='commentEdit')
-        strong Reply
+        strong Your reply
     .flex.gap-1
       .edit-area.flex-1
         textarea#sloganEdit(v-model='commentInput')
       .btn-area
-        button(:disabled='sloganLoading', @click='handleCommentEdit') Submit
+        button(:disabled='commentsLoading', @click='handleCommentEdit') Submit
   
   section.book-eps
     .card
