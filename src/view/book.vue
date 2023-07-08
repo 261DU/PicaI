@@ -82,7 +82,7 @@
         placeholder
       .flex-column.flex-1.gap-1(v-if='comments.length')
         .pages(v-for='item in comments') 
-          strong {{ item._user.name ? item._user.name : '已注销' }}:
+          strong {{ item._user.name ? '已注销' }}:
           | {{ item.content }}    At {{ item.created_at }}
       details
         pre {{ comments }}
