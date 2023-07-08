@@ -75,7 +75,17 @@
         ) {{ item.title }}
       details
         pre {{ eps }}
-
+  section.book-eps
+    .card
+      h2#comments Comments({{book.commentsCount}})
+      p.loading.align-center(v-if='commentsLoading || !comments.length')
+        placeholder
+      .flex-column.flex-1.gap-1(v-if='comments.length')
+        .pages(v-for='item in comments') 
+          strong {{ item._user.name }}:
+          | {{ item.content }}    At {{ item.created_at }}
+      details
+        pre {{ comments }}
 
 </template>
 
@@ -134,7 +144,7 @@ function init() {
     })
 
   getEps(1)
-
+  getComments(1)
 }
 
 function getEps(page = 1) {
