@@ -79,16 +79,18 @@
   
   section.book-eps
     .card
-      h2 Reply
-        .slogan-edit
-          .flex
-            label.flex-1(for='commentEdit')
-              strong Your reply
-          .flex.gap-1
-            .edit-area.flex-1
-              textarea#commentEdit(v-model='commentInput')
-            .btn-area
-              button(:disabled='commentsLoading', @click='handleCommentEdit') Submit
+      .slogan-edit
+        .flex
+          label.flex-1(for='commentEdit')
+            strong Your reply
+        .flex.gap-1
+          .edit-area.flex-1
+            textarea#commentEdit(v-model='commentInput')
+          .btn-area
+            button(:disabled='commentsLoading', @click='handleCommentEdit') Submit
+  
+  section.book-eps
+    .card
       h2#comments Comments({{book.commentsCount}})
       p.loading.align-center(v-if='commentsLoading || !comments.length')
         placeholder
