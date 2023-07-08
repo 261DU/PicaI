@@ -75,6 +75,18 @@
         ) {{ item.title }}
       details
         pre {{ eps }}
+
+  h2 Slogan
+  .slogan-edit(v-else)
+    .flex
+      label.flex-1(for='commentEdit')
+        strong Reply
+    .flex.gap-1
+      .edit-area.flex-1
+        textarea#sloganEdit(v-model='commentInput')
+      .btn-area
+        button(:disabled='sloganLoading', @click='handleCommentEdit') Submit
+  
   section.book-eps
     .card
       h2#comments Comments({{book.commentsCount}})
@@ -118,6 +130,9 @@ const epsLoading = ref(false)
 const commentsLoading = ref(false)
 const errorTitle = ref('')
 const errorMsg = ref('')
+
+const commentEdit = ref(true)
+const commentInput = ref('')
 
 function init() {
   book.value = null
@@ -192,6 +207,21 @@ function getComments(page = 1) {
     )
     .finally(() => {
       commentsLoading.value = false
+    })
+}
+
+function handleCommentEdit() {
+  sloganLoading.value = true
+  sloganEdit.value = false
+  axios
+    .put(`${API_BASE}/comics/${bookid.value}/comments`, {
+      content: commentInput.value,
+    })
+    .then(() => {
+      return getComments(1)
+    })
+    .catch((e) => {
+      console.warn('Faild to modify slogan', e)
     })
 }
 
