@@ -81,11 +81,11 @@
     .card
       .slogan-edit
         .flex
-          label.flex-1(for='sloganEdit')
+          label.flex-1(for='commentEdit')
             strong Your reply
         .flex.gap-1
           .edit-area.flex-1
-            textarea#sloganEdit(v-model='commentInput')
+            textarea#commentEdit(v-model='commentInput')
           .btn-area
             button(:disabled='commentsLoading', @click='handleCommentEdit') Submit
   
@@ -132,7 +132,7 @@ const epsLoading = ref(false)
 const errorTitle = ref('')
 const errorMsg = ref('')
 
-const sloganEdit = ref(true)
+const commentEdit = ref(true)
 const commentInput = ref('')
 
 const hasNext = ref(0)
