@@ -91,7 +91,7 @@
   
   section.book-eps
     .card
-      h2#comments Comments({{book.commentsCount.value}})
+      h2#comments Comments({{commentsCount}})
       .flex-column.flex-1.gap-1(v-if='comments.length')
         .pages(v-for='item in comments') 
           strong {{ item._user ? (item._user.name ? item._user.name : '已注销用户') : '已注销用户' }}:
@@ -138,6 +138,7 @@ const commentInput = ref('')
 const hasNext = ref(0)
 const nextPage = ref(1)
 const commentsLoading = ref(false)
+const commentsCount = ref(0)
 
 function init() {
   book.value = null
@@ -200,6 +201,7 @@ function getComments() {
     .then(
       ({ data }: any) => {
         comments.value = [...comments.value, ...data.body.comments.docs]
+        commentsCount.value = data.body.comments.total
         hasNext.value = data.body.comments.pages - parseInt(data.body.comments.page)
         nextPage.value = parseInt(data.body.comments.page) + 1
       },
