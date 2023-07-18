@@ -92,14 +92,12 @@
   section.book-eps
     .card
       h2#comments Comments({{book.commentsCount}})
-      p.loading.align-center(v-if='commentsLoading || !comments.length')
-        placeholder
       .flex-column.flex-1.gap-1(v-if='comments.length')
         .pages(v-for='item in comments') 
           strong {{ item._user ? (item._user.name ? item._user.name : '已注销用户') : '已注销用户' }}:
           | {{ item.content }}    At {{ item.created_at }}
       p.align-center(v-if='hasNext > 0')
-        a.pointer.button(@click='getComments()') {{ nextLoading ? "Loading..." : "More Comments" }} ({{ hasNext }} pages left)
+        a.pointer.button(@click='getComments()') {{ commentsLoading ? "Loading..." : "More Comments" }} ({{ hasNext }} pages left)
       details
         pre {{ comments }}
 
