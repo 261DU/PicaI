@@ -98,6 +98,8 @@
         .pages(v-for='item in comments') 
           strong {{ item._user ? (item._user.name ? item._user.name : '已注销用户') : '已注销用户' }}:
           | {{ item.content }}    At {{ item.created_at }}
+      p.align-center(v-if='hasNext > 0')
+        a.pointer.button(@click='getComments()') {{ nextLoading ? "Loading..." : "More Comments" }} ({{ hasNext }} pages left)
       details
         pre {{ comments }}
 
@@ -129,12 +131,15 @@ const eps = ref<any[]>([])
 const comments = ref<any[]>([])
 const bookLoading = ref(false)
 const epsLoading = ref(false)
-const commentsLoading = ref(false)
 const errorTitle = ref('')
 const errorMsg = ref('')
 
 const commentEdit = ref(true)
 const commentInput = ref('')
+
+const hasNext = ref(0)
+const nextPage = ref(1)
+const commentsLoading = ref(false)
 
 function init() {
   book.value = null
@@ -188,19 +193,17 @@ function getEps(page = 1) {
     })
 }
 
-function getComments(page = 1) {
+function getComments() {
   commentsLoading.value = true
   axios
     .get(`${API_BASE}/comics/${bookid.value}/comments`, {
-      params: { page },
+      params: { page: nextPage.value },
     })
     .then(
       ({ data }: any) => {
         comments.value = [...comments.value, ...data.body.comments.docs]
-        if (data.body.comments.page < data.body.comments.pages && data.body.comments.page < 8) {
-          console.info('Get more comments')
-          getComments(parseInt(data.body.comments.page) + 1)
-        }
+        hasNext.value = data.body.comments.total - parseInt(data.body.comments.page)
+        nextPage.value = parseInt(data.body.comments.page) + 1
       },
       (err) => {
         errorTitle.value = 'Failed to get book comments'
