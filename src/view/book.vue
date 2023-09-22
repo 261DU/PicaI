@@ -223,6 +223,7 @@ function handleCommentEdit() {
       content: commentInput.value,
     })
     .then(() => {
+      comments = ref<any[]>([])
       nextPage.value = 1
       return getComments(1)
     })
