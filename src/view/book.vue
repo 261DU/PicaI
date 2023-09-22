@@ -87,7 +87,7 @@
           .edit-area.flex-1
             textarea#commentEdit(v-model='commentInput')
           .btn-area
-            button(:disabled='commentsLoading', @click='handleCommentEdit') Submit
+            button(:disabled='commentsLoading', @click='handleCommentEdit()') Submit
   
   section.book-eps
     .card
