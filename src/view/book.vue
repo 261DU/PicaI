@@ -223,6 +223,7 @@ function handleCommentEdit() {
       content: commentInput.value,
     })
     .then(() => {
+      nextPage.value = 1
       return getComments(1)
     })
     .then(() => {
