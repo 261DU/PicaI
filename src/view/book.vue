@@ -219,14 +219,14 @@ function handleCommentEdit() {
   commentsLoading.value = true
   commentEdit.value = false
   axios
-    .put(`${API_BASE}/comics/${bookid.value}/comments`, {
+    .post(`${API_BASE}/comics/${bookid.value}/comments`, {
       content: commentInput.value,
     })
     .then(() => {
       return getComments(1)
     })
     .catch((e) => {
-      console.warn('Faild to modify slogan', e)
+      console.warn('Faild to modify comment', e)
     })
 }
 
