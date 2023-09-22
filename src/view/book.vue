@@ -216,7 +216,7 @@ function getComments() {
 }
 
 function handleCommentEdit() {
-  commentLoading.value = true
+  commentsLoading.value = true
   commentEdit.value = false
   axios
     .put(`${API_BASE}/comics/${bookid.value}/comments`, {
