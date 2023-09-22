@@ -225,7 +225,12 @@ function handleCommentEdit() {
     .then(() => {
       return getComments(1)
     })
+    .then(() => {
+      commentInput.value = ''
+      commentsLoading.value = false
+    })
     .catch((e) => {
+      commentsLoading.value = false
       console.warn('Faild to modify comment', e)
     })
 }
