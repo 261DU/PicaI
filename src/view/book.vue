@@ -216,8 +216,8 @@ function getComments() {
 }
 
 function handleCommentEdit() {
-  sloganLoading.value = true
-  sloganEdit.value = false
+  commentLoading.value = true
+  commentEdit.value = false
   axios
     .put(`${API_BASE}/comics/${bookid.value}/comments`, {
       content: commentInput.value,
