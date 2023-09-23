@@ -223,9 +223,9 @@ function handleCommentEdit() {
       content: commentInput.value,
     })
     .then(() => {
-      comments.value = []
       commentInput.value = ''
       nextPage.value = 1
+      comments.value = []
       return getComments(1)
     })
     .then(() => {
