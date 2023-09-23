@@ -223,12 +223,12 @@ function handleCommentEdit() {
       content: commentInput.value,
     })
     .then(() => {
-      comments = ref<any[]>([])
+      comments.value = []
+      commentInput.value = ''
       nextPage.value = 1
       return getComments(1)
     })
     .then(() => {
-      commentInput.value = ''
       commentsLoading.value = false
     })
     .catch((e) => {
