@@ -82,7 +82,7 @@
       .slogan-edit
         .flex
           label.flex-1(for='commentEdit')
-            strong Your reply(May fail if user Lv. < 2)
+            strong Your reply(May fail if user Lv. low)
         .flex.gap-1
           .edit-area.flex-1
             textarea#commentEdit(v-model='commentInput')
