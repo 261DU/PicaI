@@ -40,8 +40,8 @@ export function replaceFileUrl(obj: Record<string, any>) {
     if (typeof val === 'string') {
       if (val.startsWith('https://'||'http://')) {
         obj[key] = val
-          .replace(/storage(.*)\.picacomic\.com/g, 'picaimg.120261.xyz')
-          .replace('img.picacomic.com', 'picaimg.120261.xyz')
+          .replace(/storage(.*)\.picacomic\.com/g, 'pica-img.120261.xyz')
+          .replace('img.picacomic.com', 'pic-aimg.120261.xyz')
           .replace('www.picacomic.com', 'pica-pica.wikawika.xyz')
       }
     }
